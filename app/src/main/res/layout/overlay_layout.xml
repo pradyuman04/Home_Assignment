@@ -42,7 +42,7 @@
         android:id="@+id/closeOverlayButton"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:background="@drawable/cancel"
+        android:background="@drawable/cancel_two"
         android:layout_gravity="end"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_5sdp"/>
