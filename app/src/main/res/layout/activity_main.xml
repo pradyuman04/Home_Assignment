@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#021938"
+    android:background="@color/light"
     tools:context=".view.activity.MainActivity">
 
     <LinearLayout
@@ -13,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45ssp"
         android:orientation="horizontal"
-        android:background="@color/white"
-        android:backgroundTint="#021938"
+        android:background="@color/light"
        android:layout_alignParentTop="true">
 
         <TextView
@@ -25,7 +24,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_gravity="center"
             android:textStyle="bold"
-            android:textColor="#92E6FD"
+            android:textColor="@color/dark"
             tools:ignore="HardcodedText,SmallSp" />
 
     </LinearLayout>
@@ -40,12 +39,12 @@
 
     <nl.joery.animatedbottombar.AnimatedBottomBar
         android:id="@+id/bottomNavigationView"
-        android:background="@color/white"
+        android:background="@color/light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:abb_selectedTabType="text"
-        app:abb_indicatorColor="#92E6FD"
-        app:abb_tabColorSelected="#92E6FD"
+        app:abb_indicatorColor="@color/dark"
+        app:abb_tabColorSelected="@color/dark"
         app:abb_indicatorAppearance="round"
         app:abb_indicatorMargin="16dp"
         app:abb_indicatorHeight="4dp"

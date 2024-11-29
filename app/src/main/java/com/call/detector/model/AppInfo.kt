@@ -9,26 +9,31 @@ import android.content.pm.PackageManager
 @Suppress("DEPRECATION")
 class AppInfo(private val context: Context) {
 
-     fun getAllAppsWithMicAccess(): List<AppList> {
+    fun getAllAppsWithMicAccess(): List<AppList> {
 
         val appsList = mutableListOf<AppList>()
         val packageManager = context.packageManager
         val installedPackages: List<PackageInfo> = packageManager!!.getInstalledPackages(
-            PackageManager.GET_PERMISSIONS)
+            PackageManager.GET_PERMISSIONS
+        )
 
         for (packageInfo in installedPackages) {
             val requestedPermissions = packageInfo.requestedPermissions
             if (requestedPermissions != null && requestedPermissions.contains(android.Manifest.permission.RECORD_AUDIO)) {
-                val appName = packageInfo.applicationInfo.loadLabel(packageManager).toString()
+                val appName = packageInfo.applicationInfo!!.loadLabel(packageManager).toString()
                 val packageName = packageInfo.packageName
-                val appIcon = packageInfo.applicationInfo.loadIcon(packageManager)
+                val appIcon = packageInfo.applicationInfo!!.loadIcon(packageManager)
 
-                appsList.add(AppList(name = appName,
-                    packageName = packageName,
-                    icon = appIcon,
-                    hasBackgroundMicPermission = false,
-                    hasMicrophonePermission = true,
-                    isUsingMicrophone = false))
+                appsList.add(
+                    AppList(
+                        name = appName,
+                        packageName = packageName,
+                        icon = appIcon,
+                        hasBackgroundMicPermission = false,
+                        hasMicrophonePermission = true,
+                        isUsingMicrophone = false
+                    )
+                )
             }
         }
 
@@ -45,14 +50,14 @@ class AppInfo(private val context: Context) {
             val requestedPermissions = packageInfo.requestedPermissions ?: continue
             val applicationInfo = packageInfo.applicationInfo
             val isDownloadedFromPlayStore = (
-                    applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 &&  // Not a system app
+                    applicationInfo!!.flags and ApplicationInfo.FLAG_SYSTEM == 0 &&  // Not a system app
                             packageManager.getInstallerPackageName(packageInfo.packageName) == "com.android.vending" // Installed via Play Store
                     )
 
             if (isDownloadedFromPlayStore && android.Manifest.permission.RECORD_AUDIO in requestedPermissions) {
-                val appName = applicationInfo.loadLabel(packageManager).toString()
+                val appName = applicationInfo!!.loadLabel(packageManager).toString()
                 val packageName = packageInfo.packageName
-                val appIcon = applicationInfo.loadIcon(packageManager)
+                val appIcon = applicationInfo!!.loadIcon(packageManager)
 
                 installedApps.add(
                     AppList(
@@ -88,9 +93,9 @@ class AppInfo(private val context: Context) {
                 android.Manifest.permission.FOREGROUND_SERVICE in requestedPermissions || android.Manifest.permission.SYSTEM_ALERT_WINDOW in requestedPermissions || android.Manifest.permission.BIND_ACCESSIBILITY_SERVICE in requestedPermissions
 
             if (hasMicPermission && hasBackgroundUsageCapability) {
-                val appName = applicationInfo.loadLabel(packageManager).toString()
+                val appName = applicationInfo!!.loadLabel(packageManager).toString()
                 val packageName = packageInfo.packageName
-                val appIcon = applicationInfo.loadIcon(packageManager)
+                val appIcon = applicationInfo!!.loadIcon(packageManager)
 
                 appsWithBackgroundMicPermission.add(
                     AppList(

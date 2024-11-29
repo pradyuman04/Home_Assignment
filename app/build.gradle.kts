@@ -1,18 +1,16 @@
-@file:Suppress("UNUSED_EXPRESSION")
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
 android {
     namespace = "com.call.detector"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.call.detector"
         minSdk = 21
         //noinspection EditedTargetSdkVersion
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -29,7 +27,7 @@ android {
         }
     }
 
-    buildFeatures{
+    buildFeatures {
 
         viewBinding = true
     }
@@ -58,8 +56,5 @@ dependencies {
     implementation(libs.ssp.android)
 
     //For Bottom Navigation Bar
-    //implementation(libs.smoothbottombar)
-    //implementation (libs.bubblenavigation)
     implementation(libs.library)
-
 }

@@ -12,6 +12,7 @@ library = "1.1.0"
 material = "1.10.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
+requestPermissionsTool = "1.1.2"
 sdpAndroid = "1.1.1"
 sdpSspComposeMultiplatform = "1.0.4"
 smoothbottombar = "1.7.9"
@@ -29,6 +30,7 @@ library = { module = "nl.joery.animatedbottombar:library", version.ref = "librar
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+request-permissions-tool = { module = "com.github.merail:request-permissions-tool", version.ref = "requestPermissionsTool" }
 sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
 sdp-ssp-compose-multiplatform = { module = "network.chaintech:sdp-ssp-compose-multiplatform", version.ref = "sdpSspComposeMultiplatform" }
 smoothbottombar = { module = "com.github.ibrahimsn98:SmoothBottomBar", version.ref = "smoothbottombar" }

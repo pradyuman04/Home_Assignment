@@ -10,7 +10,7 @@
     <item
         android:id="@+id/InstalledApps"
         android:title="Installed Apps"
-        android:icon="@drawable/not_found"
+        android:icon="@drawable/download"
         tools:ignore="HardcodedText" />
     <item
         android:id="@+id/BackgroundApps"

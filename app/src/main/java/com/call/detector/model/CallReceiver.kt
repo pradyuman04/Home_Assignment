@@ -1,25 +1,33 @@
-package com.call.detector.model;
+package com.call.detector.model
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.telephony.TelephonyManager;
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.telephony.TelephonyManager
+import androidx.core.content.ContextCompat
 
-public class CallReceiver extends BroadcastReceiver {
+@Suppress("DEPRECATION")
+class CallReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent?) {
+        if (intent?.action == TelephonyManager.ACTION_PHONE_STATE_CHANGED) {
+            val state = intent.getStringExtra(TelephonyManager.EXTRA_STATE)
+            val incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        if (intent != null && TelephonyManager.ACTION_PHONE_STATE_CHANGED.equals(intent.getAction())) {
-            String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-            String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-
-            if (TelephonyManager.EXTRA_STATE_RINGING.equals(state)) {
+            if (state == TelephonyManager.EXTRA_STATE_RINGING && incomingNumber != null) {
                 // Start the service to display the popup
-                Intent serviceIntent = new Intent(context, CallOverlayService.class);
-                serviceIntent.putExtra("incomingNumber", incomingNumber != null ? incomingNumber : "Unknown");
-                context.startService(serviceIntent);
+                val serviceIntent = Intent(context, CallOverlayService::class.java)
+                serviceIntent.putExtra("incomingNumber", incomingNumber)
+                ContextCompat.startForegroundService(context, serviceIntent)
+            }
+
+            if (state == TelephonyManager.EXTRA_STATE_IDLE) {
+                // Stop the service when the call ends
+                val stopIntent = Intent(context, CallOverlayService::class.java)
+                context.stopService(stopIntent)
             }
         }
     }
 }
+
+
 
