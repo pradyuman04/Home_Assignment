@@ -25,7 +25,8 @@ An Android App With Call Detection & Microphone Access Monitor Functionality
 
 #### 📱 Feature 2: (Microphone Access Monitor)
 1. I used the **BottomNavigation Bar** with **Recycler View** for filter apps.
-2. Created common **AppsAdapter** for displaying different app lists. 
+2. Created common **AppsAdapter** for displaying different app lists.
+3. Used **Fragments** for filtering apps.
 
 ### 🛠 Tools, Language, and Libraries:
 1. Android Studio
